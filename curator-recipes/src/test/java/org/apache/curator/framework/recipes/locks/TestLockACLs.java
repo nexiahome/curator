@@ -32,13 +32,16 @@ import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class TestLockACLs extends BaseClassForTests
 {
     private static final List<ACL> ACLS1 = Collections.singletonList(new ACL(ZooDefs.Perms.ALL, new Id("ip", "127.0.0.1")));
-    private static final List<ACL> ACLS2 = Collections.singletonList(new ACL(ZooDefs.Perms.CREATE, new Id("ip", "127.0.0.1")));
+    private static final List<ACL> ACLS2 = Arrays.asList(
+        new ACL(ZooDefs.Perms.CREATE, new Id("ip", "127.0.0.1")),
+        new ACL(ZooDefs.Perms.READ, new Id("ip", "127.0.0.1")));
 
     private CuratorFramework createClient(ACLProvider provider) throws Exception
     {
@@ -87,6 +90,7 @@ public class TestLockACLs extends BaseClassForTests
         {
             client.create().creatingParentsIfNeeded().forPath("/parent/foo");
             Assert.assertEquals(ZooDefs.Perms.CREATE, client.getACL().forPath("/parent").get(0).getPerms());
+            Assert.assertEquals(ZooDefs.Perms.READ, client.getACL().forPath("/parent").get(1).getPerms());
             Assert.assertEquals(ZooDefs.Perms.ALL, client.getACL().forPath("/parent/foo").get(0).getPerms());
         }
         finally
