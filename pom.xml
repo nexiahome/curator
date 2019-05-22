@@ -28,7 +28,7 @@
 
     <groupId>org.apache.curator</groupId>
     <artifactId>apache-curator</artifactId>
-    <version>4.2.0</version>
+    <version>4.2.0-nexia1</version>
     <packaging>pom</packaging>
 
     <name>Apache Curator</name>
@@ -59,32 +59,35 @@
         <jdk-version>1.8</jdk-version>
 
         <!-- versions -->
-        <zookeeper-version>3.5.4-beta</zookeeper-version>
-        <maven-bundle-plugin-version>4.1.0</maven-bundle-plugin-version>
-        <maven-javadoc-plugin-version>3.0.1</maven-javadoc-plugin-version>
+        <zookeeper-version>3.5.5-nexia1</zookeeper-version>
+        <maven-bundle-plugin-version>4.2.0</maven-bundle-plugin-version>
+        <maven-javadoc-plugin-version>3.1.0</maven-javadoc-plugin-version>
         <doxia-module-confluence-version>1.8</doxia-module-confluence-version>
-        <maven-license-plugin-version>1.9.0</maven-license-plugin-version>
-        <javassist-version>3.24.1-GA</javassist-version>
+        <maven-license-plugin-version>1.10.b1</maven-license-plugin-version>
+        <maven-release-plugin-version>2.5.3</maven-release-plugin-version>
+        <javassist-version>3.25.0-GA</javassist-version>
         <commons-math-version>2.2</commons-math-version>
         <jackson-mapper-asl-version>1.9.13</jackson-mapper-asl-version>
-        <jackson-version>2.9.8</jackson-version>
+        <jackson-version>2.9.9</jackson-version>
         <!-- Upgrading to Jersey 2.x is difficult and of unclear benefits, see
              https://stackoverflow.com/questions/17098341#22033825 -->
         <jersey-version>1.19.4</jersey-version>
         <jsr311-api-version>1.1.1</jsr311-api-version>
         <!-- See https://stackoverflow.com/questions/43574426#comment93992044_43574427 -->
-        <jaxb-version>2.2.11</jaxb-version>
+        <jaxb-api-version>2.3.1</jaxb-api-version>
+        <jaxb-core-version>2.3.0.1</jaxb-core-version>
+        <jaxb-impl-version>2.3.2</jaxb-impl-version>
         <javax-activation-version>1.1.1</javax-activation-version>
-        <jetty-version>6.1.26</jetty-version>
-        <scannotation-version>1.0.2</scannotation-version>
+        <jetty-version>9.4.18.v20190429</jetty-version>
+        <scannotation-version>1.0.3</scannotation-version>
         <!-- resteasy-jaxrs dependency cannot be higher than 2.x for compatibility with Jersey 1.x -->
-        <resteasy-jaxrs-version>2.3.5.Final</resteasy-jaxrs-version>
-        <guava-version>27.0.1-jre</guava-version>
-        <guava-listenablefuture-version>1.0</guava-listenablefuture-version>
+        <resteasy-jaxrs-version>2.3.10.Final</resteasy-jaxrs-version>
+        <jboss-logging-version>3.4.0.Final</jboss-logging-version>
+        <guava-version>27.1-jre</guava-version>
         <guava-failureaccess-version>1.0.1</guava-failureaccess-version>
         <testng-version>6.14.3</testng-version>
         <swift-version>0.23.1</swift-version>
-        <dropwizard-version>1.3.7</dropwizard-version>
+        <dropwizard-version>1.3.11</dropwizard-version>
         <maven-shade-plugin-version>3.2.1</maven-shade-plugin-version>
         <slf4j-version>1.7.25</slf4j-version>
         <clirr-maven-plugin-version>2.8</clirr-maven-plugin-version>
@@ -103,7 +106,7 @@
         <url>https://github.com/apache/curator.git</url>
         <connection>scm:git:https://gitbox.apache.org/repos/asf/curator.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/curator.git</developerConnection>
-        <tag>apache-curator-4.2.0</tag>
+        <tag>v4.2.0-nexia1</tag>
     </scm>
 
     <issueManagement>
@@ -324,7 +327,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.9.5</version>
+                <version>1.10.19</version>
             </dependency>
 
             <dependency>
@@ -434,19 +437,19 @@
             <dependency>
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
-                <version>${jaxb-version}</version>
+                <version>${jaxb-api-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-core</artifactId>
-                <version>${jaxb-version}</version>
+                <version>${jaxb-core-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
-                <version>${jaxb-version}</version>
+                <version>${jaxb-impl-version}</version>
             </dependency>
 
             <dependency>
@@ -456,15 +459,27 @@
             </dependency>
 
             <dependency>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
                 <version>${jetty-version}</version>
             </dependency>
 
             <dependency>
-                <groupId>net.sf.scannotation</groupId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+                <version>${jetty-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scannotation</groupId>
                 <artifactId>scannotation</artifactId>
                 <version>${scannotation-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${jboss-logging-version}</version>
             </dependency>
 
             <dependency>
@@ -472,6 +487,10 @@
                 <artifactId>resteasy-jaxrs</artifactId>
                 <version>${resteasy-jaxrs-version}</version>
                 <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.logging</groupId>
+                        <artifactId>jboss-logging</artifactId>
+                    </exclusion>
                     <exclusion>
                         <groupId>org.scannotation</groupId>
                         <artifactId>scannotation</artifactId>
@@ -511,12 +530,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava-version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>listenablefuture</artifactId>
-                <version>${guava-listenablefuture-version}</version>
             </dependency>
 
             <dependency>
@@ -593,6 +606,26 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M2</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-maven</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireMavenVersion>
+                                        <version>3.6.1</version>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
                     <version>${maven-bundle-plugin-version}</version>
@@ -607,6 +640,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin-version}</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <tagNameFormat>${project.artifactId}-${project.version}</tagNameFormat>
@@ -699,10 +733,25 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
                 <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
                     <threadCount>1</threadCount>
                     <reuseForks>false</reuseForks>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
                 </configuration>
             </plugin>
 
@@ -800,6 +849,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin-version}</version>
                 <configuration>
                     <arguments>-DskipTests</arguments>
                     <mavenExecutorId>forked-path</mavenExecutorId>
