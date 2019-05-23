@@ -132,10 +132,16 @@
     </ciManagement>
 
     <distributionManagement>
-        <site>
-            <id>apache.website.svnpub</id>
-            <url>scm:svn:https://svn.apache.org/repos/asf/curator/site/trunk</url>
-        </site>
+        <repository>
+            <id>central</id>
+            <name>artifactory.nexiabuild.com-releases</name>
+            <url>https://artifactory.nexiabuild.com/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>artifactory.nexiabuild.com-snapshots</name>
+            <url>https://artifactory.nexiabuild.com/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <mailingLists>
